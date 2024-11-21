@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #d6f9e6;
+  margin: 0;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Styles */
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.quiz-container {
+  max-width: 700px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+}
+
+.quiz-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.quiz-question {
+  margin-bottom: 20px;
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-label {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.option-input {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.thank-you-message,
+.error-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f4f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-message h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.error-message {
+  color: #d9534f;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #031e12;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #058d22;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+}
+
+label {
+  margin: 10px 0;
+}
+
+input {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #092510;
+  border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+  background-color: #058d22;
+}
+
+/* TeacherDashboard.css */
+
+.teacher-dashboard {
+  display: flex;
+}
+
+.teacher-sidebar {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.teacher-sidebar ul {
+  list-style-type: none;
+}
+
+.teacher-sidebar li {
+  margin: 10px 0;
+}
+
+.teacher-dashboard-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.teacher-header {
+  margin-bottom: 20px;
+}
+
+.teacher-questions,
+.teacher-students {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #031f04;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5b6305;
+}
+
+/* Example CSS */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.question-container {
+  display: flex;
+  justify-content: center;
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+/* Container styles */
+.performance-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.performance-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Individual card styling */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  background-color: #f9f9f9;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Text styling inside cards */
+.card h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Position the error and success messages */
+.error-message,
+.success-message {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 9999;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Success message style */
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Fade the message after 3 seconds (optional) */
+.success-message,
+.error-message {
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.student-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* Cards container */
+.performance-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
