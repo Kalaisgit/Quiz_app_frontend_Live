@@ -274,7 +274,7 @@ h3 {
 /* Fade the message after 3 seconds (optional) */
 .success-message,
 .error-message {
-  animation: fadeOut 3s forwards;
+  animation: fadeOut 5s forwards;
 }
 
 @keyframes fadeOut {
