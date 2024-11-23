@@ -27,6 +27,7 @@ const Register = () => {
         navigate("/login");
       }, 3000); // Redirect after 3 seconds
     } catch (err) {
+      setSuccessMessage(""); // Clear any previous success message
       setError("Registration failed. Please try again.");
     }
   };
@@ -59,7 +60,10 @@ const Register = () => {
             <option value="Teacher">Teacher</option>
           </select>
         </div>
-        {error && <div>{error}</div>}
+        {error && <div className="error-message">{error}</div>}
+        {successMessage && (
+          <div className="success-message">{successMessage}</div>
+        )}
         <button type="submit">Register</button>
       </form>
       <button onClick={goBack}>Back</button>
