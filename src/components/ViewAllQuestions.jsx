@@ -83,19 +83,25 @@ const ViewAllQuestions = () => {
         return;
       }
 
-      await axios.delete(
+      const response = await axios.delete(
         `${process.env.REACT_APP_API_URL}/delete-question/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      // Remove the deleted question from the state
-      const updatedQuestions = questions.filter(
-        (question) => question.id !== id
-      );
-      setQuestions(updatedQuestions);
+      // Check the response for success
+      if (response.status === 200) {
+        const updatedQuestions = questions.filter(
+          (question) => question.id !== id
+        );
+        setQuestions(updatedQuestions);
+      } else {
+        // Handle any unexpected responses from the backend
+        setError("Error deleting question: " + response.data.message);
+      }
     } catch (err) {
+      console.error("Error deleting question:", err);
       setError("Error deleting question: " + err.message);
     }
   };
