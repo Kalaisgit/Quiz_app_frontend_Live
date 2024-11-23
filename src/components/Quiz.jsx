@@ -9,6 +9,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [error, setError] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false); // To track if quiz is completed
+  const [submitting, setSubmitting] = useState(false); // State to track the submit process
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -83,6 +84,8 @@ const Quiz = () => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("id"); // Assuming you stored the user ID in localStorage during login
 
+    setSubmitting(true); // Start submitting
+
     try {
       // Submit the answers to calculate score
       const response = await axios.post(
@@ -103,6 +106,8 @@ const Quiz = () => {
     } catch (err) {
       console.error("Error submitting quiz:", err);
       setError("Failed to submit the quiz. Please try again.");
+    } finally {
+      setSubmitting(false); // Stop submitting
     }
   };
 
@@ -163,8 +168,13 @@ const Quiz = () => {
             </div>
           </div>
         ))}
-        <button type="button" onClick={handleSubmit} className="submit-button">
-          Submit Quiz
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="submit-button"
+          disabled={submitting} // Disable the button during submission
+        >
+          {submitting ? "Submitting..." : "Submit Quiz"}
         </button>
       </form>
     </div>
