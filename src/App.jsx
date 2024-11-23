@@ -29,8 +29,10 @@ const App = () => {
           {/* Route for viewing all quiz */}
           <Route path="/view-all-questions" element={<ViewAllQuestions />} />
 
+          {/* Route for viewing student performances */}
           <Route path="/student-performance" element={<StudentPerformance />} />
 
+          {/* Route for Thankyou*/}
           <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
       </div>
