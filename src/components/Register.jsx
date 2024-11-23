@@ -7,6 +7,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Student");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // For success message
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1); // Goes one step back in the history
@@ -20,7 +21,11 @@ const Register = () => {
         password,
         role,
       });
-      navigate("/login");
+      setError(""); // Clear any previous error
+      setSuccessMessage("Registration successful! Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000); // Redirect after 3 seconds
     } catch (err) {
       setError("Registration failed. Please try again.");
     }
