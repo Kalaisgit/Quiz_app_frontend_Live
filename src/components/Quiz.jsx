@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
-
+  const [loading, setLoading] = useState(true); // State to track loading
   const [score, setScore] = useState(0);
   const [error, setError] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false); // To track if quiz is completed
@@ -20,6 +20,7 @@ const Quiz = () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setError("Unauthorized access. Please log in.");
+        setLoading(false);
         return;
       }
 
@@ -35,11 +36,13 @@ const Quiz = () => {
         if (response.data.quizCompleted) {
           setQuizCompleted(true); // Set quizCompleted to true if the user already took the quiz
         } else {
-          fetchQuestions(); // Only fetch questions if the quiz is not completed
+          await fetchQuestions(); // Only fetch questions if the quiz is not completed
         }
       } catch (err) {
         console.error("Error fetching quiz status:", err);
         setError("Failed to fetch quiz status. Please try again.");
+      } finally {
+        setLoading(false); // Stop loading once the status is checked
       }
     };
 
@@ -103,12 +106,24 @@ const Quiz = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="loading-message">
+        <h2>Loading...</h2>
+        <p>Please wait while we fetch the quiz for you.</p>
+      </div>
+    );
+  }
+
   if (quizCompleted) {
     return (
       <div className="thank-you-message">
         <h1>Thank You!</h1>
         <p>You have completed the quiz.</p>
-        <p>Your score: {score}/5</p>
+        <p>
+          Your score: {score}/{questions.length}{" "}
+          {/* Dynamic score calculation */}
+        </p>
       </div>
     );
   }
@@ -126,9 +141,11 @@ const Quiz = () => {
       <button onClick={goBack}>Back</button>
       <h1 className="quiz-title">Quiz</h1>
       <form onSubmit={(e) => e.preventDefault()}>
-        {questions.map((question) => (
+        {questions.map((question, index) => (
           <div key={question.id} className="quiz-question">
-            <h3 className="question-text">{question.question}</h3>
+            <h3 className="question-text">
+              {index + 1}. {question.question}
+            </h3>
             <div className="options-container">
               {["a", "b", "c", "d"].map((option) => (
                 <label key={option} className="option-label">
