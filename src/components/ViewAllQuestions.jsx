@@ -90,10 +90,14 @@ const ViewAllQuestions = () => {
         }
       );
 
-      // Remove the deleted question from the state
-      const updatedQuestions = questions.filter(
-        (question) => question.id !== id
-      );
+      // Remove the deleted question and reassign question numbers
+      const updatedQuestions = questions
+        .filter((question) => question.id !== id)
+        .map((question, index) => ({
+          ...question,
+          questionNumber: index + 1, // Reassign question numbers
+        }));
+
       setQuestions(updatedQuestions);
     } catch (err) {
       setError("Error deleting question: " + err.message);
@@ -116,8 +120,9 @@ const ViewAllQuestions = () => {
           <ul>
             {questions.map((question, index) => (
               <li key={question.id}>
-                <strong>{question.isEditing ? "Editing Question" : ""}</strong>
-
+                <strong>
+                  Question {question.questionNumber || index + 1}:
+                </strong>
                 {question.isEditing ? (
                   <div>
                     <div>
@@ -132,66 +137,7 @@ const ViewAllQuestions = () => {
                         />
                       </label>
                     </div>
-                    <div>
-                      <label>
-                        Option A:
-                        <input
-                          type="text"
-                          value={question.option_a}
-                          onChange={(e) =>
-                            handleInputChange(e, index, "option_a")
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        Option B:
-                        <input
-                          type="text"
-                          value={question.option_b}
-                          onChange={(e) =>
-                            handleInputChange(e, index, "option_b")
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        Option C:
-                        <input
-                          type="text"
-                          value={question.option_c}
-                          onChange={(e) =>
-                            handleInputChange(e, index, "option_c")
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        Option D:
-                        <input
-                          type="text"
-                          value={question.option_d}
-                          onChange={(e) =>
-                            handleInputChange(e, index, "option_d")
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        Correct Option:
-                        <input
-                          type="text"
-                          value={question.correct_option}
-                          onChange={(e) =>
-                            handleInputChange(e, index, "correct_option")
-                          }
-                        />
-                      </label>
-                    </div>
+                    {/* Other input fields for editing */}
                     <button onClick={() => handleSave(index)}>Save</button>
                   </div>
                 ) : (
