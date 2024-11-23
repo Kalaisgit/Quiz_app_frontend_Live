@@ -103,7 +103,7 @@ const ViewAllQuestions = () => {
         );
         setQuestions(updatedQuestions);
       } else {
-        setError("Error deleting question: " + response.data.message);
+        setError("Error deleting question : " + response.data.message);
       }
     } catch (err) {
       // Log any errors from the request
