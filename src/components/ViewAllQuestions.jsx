@@ -77,32 +77,38 @@ const ViewAllQuestions = () => {
 
   const handleDelete = async (id) => {
     try {
+      // Get the authentication token from localStorage
       const token = localStorage.getItem("token");
+
       if (!token) {
         setError("Authentication required. Please log in.");
         return;
       }
 
+      // Make the delete request with the token in headers
       const response = await axios.delete(
         `${process.env.REACT_APP_API_URL}/delete-question/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Check the response for success
+      // Log the full response object for debugging
+      console.log("Delete response:", response);
+
+      // Check the status code and handle accordingly
       if (response.status === 200) {
+        setSuccess(response.data.message); // For success
+        // Optionally update your state to reflect the deleted question
         const updatedQuestions = questions.filter(
           (question) => question.id !== id
         );
         setQuestions(updatedQuestions);
       } else {
-        // Handle any unexpected responses from the backend
         setError("Error deleting question: " + response.data.message);
       }
     } catch (err) {
+      // Log any errors from the request
       console.error("Error deleting question:", err);
-      setError("Error deleting question: " + err.message);
+      setError("An error occurred while deleting the question.");
     }
   };
 
